@@ -109,35 +109,7 @@ architecture_button=Button(root,text="View Model Architecture ",bg="red",fg="whi
 architecture_button.config(font=('arial',10,'bold'))
 architecture_button.place(x=400,y=300)
 
-def aboutDataset():
-    dataset=Tk()
-    scrollbar =Scrollbar(dataset)
-    scrollbar.pack(side=RIGHT,fill=Y)
-    text = Text(dataset,bg="cyan",fg="black")
-    text.config(font=('arial',12,'bold'))
-    text.insert(INSERT,"\t\t\tFRUITS 360 DATASET\n\n")
-    text.insert(END,"\t\t\tTRAINING IMAGES\n\n")
-    text.insert(END,"\t\tNUMBER OF IMAGES"+"\t\t\t"+"CLASS NAME\n")
-    total_train_images = 0
-    for class_name in class_names:
-        x = len(os.listdir(os.path.join(train_dir,class_name)))
-        total_train_images += x  
-        text.insert(END,"\t\t"+str(x)+"\t\t\t"+class_name+"\n")
-    text.insert(END,"\n\n\t\t\tTEST IMAGES\n\n")
-    text.insert(END,"\t\tNUMBER OF IMAGES"+"\t\t\t"+"CLASS NAME\n")
-    total_test_images = 0
-    for class_name in class_names:
-        y = len(os.listdir(os.path.join(test_dir,class_name)))
-        total_test_images += y
-        text.insert(END,"\t\t"+str(y)+"\t\t\t"+class_name+"\n")
-        
-    text.insert(END,"\n\n\t\t"+"TOTAL TRAINING IMAGES : "+str(total_train_images))    
-    text.insert(END,"\n\t\t"+"TOTAL TEST IMAGES : "+str(total_test_images))
-    text.pack()
-    text.config(yscrollcommand=scrollbar.set)
-    scrollbar.config(command=text.yview)
-    dataset.mainloop()
-    
+
     
 def aboutUs():
     messagebox.showinfo("[INFO]","CHILUKURI VINAY KUMAR - 11716840")
@@ -149,9 +121,7 @@ def destroy():
 menu = Menu(root)
 root.config(menu=menu)
 filemenu = Menu(menu)
-menu.add_cascade(label="INFO", menu=filemenu,command = aboutDataset)
-filemenu.add_command(label="About Dataset", command=aboutDataset)
-filemenu.add_separator()
+menu.add_cascade(label="INFO", menu=filemenu)
 filemenu.add_command(label="About us", command=aboutUs)
 
 destroy_button=Button(root,text="Exit",bg="red",fg="white",activebackground="green",width=17,command=destroy)
